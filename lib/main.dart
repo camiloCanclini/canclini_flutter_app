@@ -4,6 +4,7 @@
 import 'package:canclini_flutter_app/providers/theme_prov.dart';
 // HELPERS
 import 'package:canclini_flutter_app/helpers/secure_storage_helper.dart';
+import 'package:canclini_flutter_app/screens/products_screen.dart';
 // FLUTTER
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ import 'package:provider/provider.dart';
 import 'package:canclini_flutter_app/screens/home_screen.dart';
 import 'package:canclini_flutter_app/screens/login_screen.dart';
 
+import 'helpers/observers/AuthenticationNavigator.dart';
+
 void main() async{
 
   // C O N F I G U R A C I O N E S
@@ -21,34 +24,42 @@ void main() async{
   //await dotenv.load();
   //await Preferences.initShared();
 
-  // I N I C I A L I Z A C I O N   A P P
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Aquí deberías realizar la lógica de verificación de credenciales
+  bool isLoggedIn = await SecureStorage.isTokenValid(); // Esta función debería verificar las credenciales
+
+  runApp(MyApp(isLoggedIn: isLoggedIn));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+  final bool isLoggedIn;
+  const MyApp({super.key, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-      future: SecureStorage.isTokenValid(), // Función para verificar la autenticación
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(color: Colors.indigoAccent, valueColor: AlwaysStoppedAnimation(Colors.cyan),); // Indicador de carga mientras se verifica la autenticación
-        } else {
-          if (snapshot.data == true) {
-            return MaterialApp(
-              // ... Resto de tu MaterialApp con rutas
-              home: HomeScreen(), // Mostrar la pantalla principal si está autenticado
-            );
-          } else {
-            return MaterialApp(
-              // ... Resto de tu MaterialApp con rutas
-              home: LoginScreen(), // Mostrar la pantalla de inicio de sesión si no está autenticado
-            );
-          }
-        }
+    return MaterialApp(
+      home: isLoggedIn ? const HomeScreen() : const LoadingScreen(),
+      navigatorObservers: [AuthenticationNavigator()],
+      routes: {
+        'login': (context) => LoginScreen(),
+        'home': (context) => HomeScreen(),
+        'products': (context) => ProductsScreen()
       },
+    );
+  }
+}
+
+class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }

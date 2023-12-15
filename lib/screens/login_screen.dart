@@ -13,6 +13,8 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,9 +86,9 @@ class LoginScreen extends StatelessWidget {
         // Redirigir a la pantalla principal
         if (context.mounted) {
           Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
         }
       } else {
         if (context.mounted) {
@@ -95,14 +97,14 @@ class LoginScreen extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Error'),
-              content: Text('Credenciales incorrectas. Inténtalo de nuevo.'),
+              title: const Text('Fallo al iniciar sesión'),
+              content: const Text('Credenciales incorrectas. Inténtalo de nuevo.'),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // Cerrar el diálogo
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 ),
               ],
             );

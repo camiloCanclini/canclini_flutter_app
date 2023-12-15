@@ -21,7 +21,7 @@ class AuthenticationNavigator extends NavigatorObserver {
 
     if (!isAuthenticated && context != null) {
       if(context.mounted){
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushReplacementNamed(context, 'login');
       }
 
     }

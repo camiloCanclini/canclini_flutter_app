@@ -4,8 +4,8 @@ import 'package:canclini_flutter_app/screens/user_profile_screen.dart';
 
 import '../common_widgets/DrawerMenu.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class ProductsScreen extends StatelessWidget {
+  const ProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       drawer: DrawerMenu(),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Home'),
+        title: const Text('Products'),
         actions: [
           SizedBox(
             width: 50,
