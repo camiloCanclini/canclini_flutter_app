@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:canclini_flutter_app/helpers/secure_storage_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -13,7 +14,10 @@ import 'package:canclini_flutter_app/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    // Aquí deberías realizar la lógica de verificación de credenciales
+    bool isLoggedIn = await SecureStorage.isTokenValid(); // Esta función debería verificar las credenciales
+
+    await tester.pumpWidget(MyApp(isLoggedIn: isLoggedIn));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

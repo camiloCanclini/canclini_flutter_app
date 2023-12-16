@@ -1,8 +1,8 @@
 // Esta sería la pantalla de inicio de sesión
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 import '../helpers/secure_storage_helper.dart';
@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Store App Login'),
+        title: const Text('Store App Login'),
         centerTitle: true,
       ),
       body: Padding(
@@ -49,13 +49,13 @@ class LoginScreen extends StatelessWidget {
               onPressed: () {
                 _loginUser(context);
               },
-              child: Text('Iniciar sesión'),
+              child: const Text('Iniciar sesión'),
             ),
             TextButton(
               onPressed: () {
-                // Lógica para ir a la pantalla de registro
+
               },
-              child: Text('Registrarse'),
+              child: const Text('Registrarse'),
             ),
           ],
         ),
@@ -64,35 +64,30 @@ class LoginScreen extends StatelessWidget {
   }
 
   void _loginUser(BuildContext context) async {
-    const String apiUrl = 'https://canclini-express-api.onrender.com/register';
-
+    final String apiUrl = dotenv.env['API_URL']!;
     try {
       final Map<String, String> data = {
         'email': _emailController.text,
         'password': _passwordController.text,
       };
-
       final http.Response response = await http.post(
-        Uri.parse(apiUrl),
+        Uri.parse('$apiUrl/register'),
         body: json.encode(data),
         headers: {'Content-Type': 'application/json'},
       );
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
         final String token = responseData['apiKey'];
-        await SecureStorage.saveToken(token); // Guardar el token en SecureStorage
-
-        // Redirigir a la pantalla principal
+        //print(token);
+        await SecureStorage.saveToken(token);
         if (context.mounted) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
           );
         }
       } else {
         if (context.mounted) {
-          // Mostrar un mensaje de error si las credenciales son incorrectas
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -102,7 +97,7 @@ class LoginScreen extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Cerrar el diálogo
+                    Navigator.of(context).pop();
                   },
                   child: const Text('OK'),
                 ),
@@ -113,8 +108,7 @@ class LoginScreen extends StatelessWidget {
         }
       }
     } catch (e) {
-      // Manejar errores
-      print('Error: $e');
+      //print('Error: $e');
     }
   }
 }
@@ -124,43 +118,5 @@ class LoginScreen extends StatelessWidget {
 // W I D G E T S  A L E R T A S
 
 // Función para mostrar el diálogo de éxito
-void _showLoginSuccessDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('¡Inicio de sesión exitoso!'),
-        content: Text('Ahora estás conectado.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Cerrar el diálogo
-            },
-            child: Text('OK'),
-          ),
-        ],
-      );
-    },
-  );
-}
 
 // Función para mostrar el diálogo de error
-void _showErrorDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Error en el inicio de sesión'),
-        content: Text('Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Cerrar el diálogo
-            },
-            child: Text('OK'),
-          ),
-        ],
-      );
-    },
-  );
-}

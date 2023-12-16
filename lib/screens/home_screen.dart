@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:canclini_flutter_app/screens/user_profile_screen.dart';
 
-import '../common_widgets/DrawerMenu.dart';
+import '../common_widgets/app_bar.dart';
+import '../common_widgets/drawer_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,27 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerMenu(),
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Home'),
-        actions: [
-          SizedBox(
-            width: 50,
-            height: 50,
-            child: IconButton(
-              icon: const Icon(Icons.account_circle),
-              color: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const UserProfileScreen()),
-                );
-              },
-
-            ),
-          )
-        ],
-      ),
+      appBar: MyAppBar(titleAppBar: 'Home'),
       body: const Center(
         child: Text('Bienvenido!'),
       ),

@@ -8,6 +8,7 @@ import 'package:canclini_flutter_app/screens/products_screen.dart';
 // FLUTTER
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 // DEPENDENCIES
 //import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,7 @@ void main() async{
   //await Preferences.initShared();
 
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   // Aquí deberías realizar la lógica de verificación de credenciales
   bool isLoggedIn = await SecureStorage.isTokenValid(); // Esta función debería verificar las credenciales
@@ -41,6 +43,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: isLoggedIn ? const HomeScreen() : const LoadingScreen(),
+      theme: ThemeData(
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
+      ),
       navigatorObservers: [AuthenticationNavigator()],
       routes: {
         'login': (context) => LoginScreen(),
