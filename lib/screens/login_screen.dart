@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 import '../helpers/secure_storage_helper.dart';
+import 'package:canclini_flutter_app/services/store_api/users.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -47,13 +48,13 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                _loginUser(context);
+                login(context);
               },
               child: const Text('Iniciar sesión'),
             ),
             TextButton(
               onPressed: () {
-
+                register(context);
               },
               child: const Text('Registrarse'),
             ),
@@ -63,37 +64,25 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void _loginUser(BuildContext context) async {
+  void login(BuildContext context) async {
     final String apiUrl = dotenv.env['API_URL']!;
     try {
-      final Map<String, String> data = {
-        'email': _emailController.text,
-        'password': _passwordController.text,
-      };
-      final http.Response response = await http.post(
-        Uri.parse('$apiUrl/register'),
-        body: json.encode(data),
-        headers: {'Content-Type': 'application/json'},
-      );
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> responseData = json.decode(response.body);
-        final String token = responseData['apiKey'];
-        //print(token);
-        await SecureStorage.saveToken(token);
-        if (context.mounted) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          );
-        }
-      } else {
-        if (context.mounted) {
+      final String token = await UserService.loginUser(_emailController.text, _passwordController.text);
+      await SecureStorage.saveToken(token);
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Fallo al iniciar sesión'),
-              content: const Text('Credenciales incorrectas. Inténtalo de nuevo.'),
+              content: Text(e.toString()),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -105,18 +94,42 @@ class LoginScreen extends StatelessWidget {
             );
           },
         );
-        }
+      }
+    }
+  }
+
+  void register(BuildContext context) async {
+    final String apiUrl = dotenv.env['API_URL']!;
+    try {
+      final String token = await UserService.registerUser(_emailController.text, _passwordController.text);
+      await SecureStorage.saveToken(token);
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
       }
     } catch (e) {
-      //print('Error: $e');
+      if (context.mounted) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Fallo al iniciar sesión'),
+              content: Text(e.toString()),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 }
 
-
-
-// W I D G E T S  A L E R T A S
-
-// Función para mostrar el diálogo de éxito
-
-// Función para mostrar el diálogo de error

@@ -2,7 +2,7 @@
 
 Store application that consume an API hosted on Render service.
 
-## Getting Started
+## Getting Started+
 
 This project is a starting point for a Flutter application.
 
