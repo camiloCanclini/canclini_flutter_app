@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: isLoggedIn ? const HomeScreen() : const LoadingScreen(),
+      home: isLoggedIn ? const HomeScreen() : LoginScreen(),
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           },
         ),
       ),
-      navigatorObservers: [AuthenticationNavigator()],
+      //navigatorObservers: [AuthenticationNavigator()],
       routes: {
         'login': (context) => LoginScreen(),
         'home': (context) => HomeScreen(),
@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
 }
 
 class LoadingScreen extends StatelessWidget {
+
   const LoadingScreen({super.key});
 
   @override
@@ -72,4 +73,5 @@ class LoadingScreen extends StatelessWidget {
       ),
     );
   }
+
 }
