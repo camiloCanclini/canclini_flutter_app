@@ -9,6 +9,7 @@ import 'package:canclini_flutter_app/screens/products_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 // DEPENDENCIES
 //import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -50,11 +51,18 @@ class MyApp extends StatelessWidget {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      builder: (context, child) => Stack(
+        children: [
+          child!,
+          const DropdownAlert(position: AlertPosition.BOTTOM, delayDismiss: 10000, showCloseButton: true,)
+        ],
       ),
       //navigatorObservers: [AuthenticationNavigator()],
       routes: {
-        'login': (context) => LoginScreen(),
-        'home': (context) => HomeScreen(),
+        'login': (context) => const LoginScreen(),
+        'home': (context) => const HomeScreen(),
         'products': (context) => ProductsScreen()
       },
     );
