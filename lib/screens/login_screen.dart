@@ -1,5 +1,3 @@
-// Esta sería la pantalla de inicio de sesión
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,7 +7,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'home_screen.dart';
 
 import 'package:flutter_dropdown_alert/alert_controller.dart';
-import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -69,7 +66,7 @@ class LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 const SizedBox(height: 80),
                 Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -97,7 +94,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 )
-              : SizedBox(), // Widget vacío cuando isLoading es falso
+              : const SizedBox(), // Widget vacío cuando isLoading es falso
         ],
       ),
     );

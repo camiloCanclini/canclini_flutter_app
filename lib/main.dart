@@ -1,23 +1,19 @@
 
 // I M P O R T A C I O N E S
 // PROVIDERS
-import 'package:canclini_flutter_app/providers/theme_prov.dart';
 // HELPERS
 import 'package:canclini_flutter_app/helpers/secure_storage_helper.dart';
 import 'package:canclini_flutter_app/screens/products_screen.dart';
 // FLUTTER
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 // DEPENDENCIES
 //import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:provider/provider.dart';
 // SCREENS
 import 'package:canclini_flutter_app/screens/home_screen.dart';
 import 'package:canclini_flutter_app/screens/login_screen.dart';
 
-import 'helpers/observers/AuthenticationNavigator.dart';
 
 void main() async{
 
@@ -43,7 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: isLoggedIn ? const HomeScreen() : LoginScreen(),
+      home: isLoggedIn ? const HomeScreen() : const LoginScreen(),
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
