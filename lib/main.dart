@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        //visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       builder: (context, child) => Stack(
         children: [
