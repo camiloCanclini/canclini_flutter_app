@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:canclini_flutter_app/screens/user_profile_screen.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
-
-import '../common_widgets/app_bar.dart';
-import '../common_widgets/drawer_menu.dart';
 
 class HomeScreen extends StatefulWidget {
 
@@ -20,35 +16,24 @@ class HomeScreenState extends State<HomeScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar:  MoltenBottomNavigationBar(
-        selectedIndex: selectedIndex,
-        barColor: Colors.deepPurple,
-        curve: Curves.easeInSine,
-        duration: const Duration(milliseconds: 300),
-        domeHeight: 15,
-        onTabChange: (clickedIndex) {
-          setState(() {
-            selectedIndex = clickedIndex;
-          });
-        },
-        tabs: [
-          MoltenTab(
-            icon: const Icon(Icons.shelves),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            margin: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius:  BorderRadius.circular(25),
+              image: const DecorationImage(
+                image: AssetImage('assets/images/home_screen/oferta_del_dia.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          MoltenTab(
-            icon: const Icon(Icons.home),
-          ),
-          MoltenTab(
-            icon: const Icon(Icons.person),
-          ),
-        ],
-      ),
-      appBar: MyAppBar(titleAppBar: 'Home'),
-      body: const Center(
-        child: Text('Bienvenido!'),
-      ),
+        )
+      ],
     );
   }
-
 }

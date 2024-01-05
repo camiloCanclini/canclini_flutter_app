@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../helpers/secure_storage_helper.dart';
 import 'package:canclini_flutter_app/services/store_api/users.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'home_screen.dart';
+import 'package:canclini_flutter_app/layouts/main_layout.dart';
 
 import 'package:flutter_dropdown_alert/alert_controller.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
@@ -359,7 +359,7 @@ class _LoginFormState extends State<LoginForm>{
         if (context.mounted) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => const MainLayout()),
           );
         }
       } catch(e) {
@@ -548,8 +548,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     register(context);
                   },
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all<
-                        EdgeInsetsGeometry>(EdgeInsets.zero),
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.zero),
                     shape:
                     MaterialStateProperty.all<OutlinedBorder>(
                       RoundedRectangleBorder(
@@ -650,7 +649,7 @@ class _RegisterFormState extends State<RegisterForm> {
         if (context.mounted) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => const MainLayout()),
           );
         }
       } catch(e) {

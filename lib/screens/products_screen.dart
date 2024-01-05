@@ -16,8 +16,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerMenu(),
-      appBar: MyAppBar(titleAppBar: 'Productos'),
+      backgroundColor: Colors.transparent,
       body: Center(
         child: FutureBuilder<List<Product>>(
           future: service.getAllProducts(),
