@@ -17,7 +17,7 @@ class UserService{
          Uri.parse('$apiUrl/login'),
          body: json.encode(data),
          headers: {'Content-Type': 'application/json'},
-       );
+       ).timeout(const Duration(seconds: 15));
 
        if (response.statusCode == 200){
          final Map<String, dynamic> responseData = json.decode(response.body);
@@ -41,7 +41,7 @@ class UserService{
       Uri.parse('$apiUrl/register'),
       body: json.encode(data),
       headers: {'Content-Type': 'application/json'},
-    );
+    ).timeout(const Duration(seconds: 15));
     final Map<String, dynamic> responseData = json.decode(response.body);
     if (response.statusCode == 200){
       return responseData['apiKey'];
