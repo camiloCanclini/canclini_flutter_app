@@ -16,7 +16,7 @@ class ProductsService{
       final response = await http.get(
           Uri.parse('$apiUrl/products'),
           headers: {"apiKey": tokenStored}
-      );
+      ).timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         return data.map((product) => Product.fromJson(product)).toList();  // Mapeo la lista de productos obtenida en la respuesta a una lista de objetos Product

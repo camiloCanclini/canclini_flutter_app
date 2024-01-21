@@ -3,7 +3,10 @@
 // PROVIDERS
 // HELPERS
 import 'package:canclini_flutter_app/helpers/secure_storage_helper.dart';
-import 'package:canclini_flutter_app/screens/products_screen.dart';
+import 'package:canclini_flutter_app/layouts/main_layout.dart';
+import 'package:canclini_flutter_app/providers/products_provider.dart';
+import 'package:canclini_flutter_app/providers/theme_provider.dart';
+import 'package:canclini_flutter_app/screens/products_screen/products_screen.dart';
 // FLUTTER
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -12,7 +15,8 @@ import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 //import 'package:flutter_dotenv/flutter_dotenv.dart';
 // SCREENS
 import 'package:canclini_flutter_app/screens/home_screen.dart';
-import 'package:canclini_flutter_app/screens/login_screen.dart';
+import 'package:canclini_flutter_app/screens/login_screen/login_screen.dart';
+import 'package:provider/provider.dart';
 
 
 void main() async{
@@ -28,7 +32,15 @@ void main() async{
   // Aquí deberías realizar la lógica de verificación de credenciales
   bool isLoggedIn = await SecureStorage.isTokenValid(); // Esta función debería verificar las credenciales
 
-  runApp(MyApp(isLoggedIn: isLoggedIn));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => ProductsProvider()),
+      ],
+      child: MyApp(isLoggedIn: isLoggedIn),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -39,7 +51,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: isLoggedIn ? const HomeScreen() : const LoginScreen(),
+      home: isLoggedIn ?
+        ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        child: const MainLayout(),
+        ) :
+        const LoginScreen(),
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
@@ -55,11 +72,12 @@ class MyApp extends StatelessWidget {
           const DropdownAlert(position: AlertPosition.BOTTOM, delayDismiss: 10000, showCloseButton: true,)
         ],
       ),
-      //navigatorObservers: [AuthenticationNavigator()],
       routes: {
-        'login': (context) => const LoginScreen(),
-        'home': (context) => const HomeScreen(),
-        'products': (context) => ProductsScreen()
+        '/login': (context) => const LoginScreen(),
+        '/home': (context) => ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+          child: const MainLayout(),
+        )
       },
     );
   }
