@@ -28,11 +28,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
         title: Text(widget.product.title),
         backgroundColor: widget.appTheme.bottomBarColor,
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -88,20 +94,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               const Icon(
                                 Icons.star,
                                 size: 22.0,
-                                color: Colors.yellow,
+                                color: Colors.orange,
                               ),
                               Text(
                                 '${widget.product.rating.rate}',
                                 style: const TextStyle(
                                   fontSize: 20.0,
-                                  color: Colors.yellow,
+                                  color: Colors.orange,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
                           ),
                         )
-
                       ],
                     ),
                     Expanded(
@@ -121,13 +126,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           padding: const EdgeInsets.all(10),
                           child: AddToCartButton(
                             trolley: Container(
-                              child: Icon(Icons.shopping_cart),
+                              child: const Icon(
+                                  Icons.shopping_cart,
+                                  color: Colors.white,
+                              ),
                             ),
                             text: const Text(
                               'Añadir al carrito',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 14,
+                                color: Colors.white
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.fade,
