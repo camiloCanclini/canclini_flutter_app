@@ -10,6 +10,8 @@ class ThemeModel {
   final Color primaryTextColor;
   final Color secondaryTextColor;
   final Color cardBackgroundColor;
+  final Color cardSecondaryBackgroundColor;
+  final Color cardShadowColor;
   final Color bottomBarColor;
 
   ThemeModel({
@@ -20,6 +22,8 @@ class ThemeModel {
     required this.secondaryTextColor,
     required this.cardBackgroundColor,
     required this.bottomBarColor,
+    required this.cardSecondaryBackgroundColor,
+    required this.cardShadowColor,
   });
 }
 
@@ -28,11 +32,13 @@ class LightTheme extends ThemeModel {
       : super(
     primaryColor: const Color(0xFF8811F7),
     accentColor: const Color(0xFFC83DFF),
-    backgroundColor: Colors.white,
+    backgroundColor: const Color(0xFFE6E5EA),
     primaryTextColor: Colors.black,
     secondaryTextColor: Colors.black38,
     cardBackgroundColor: Colors.white,
-    bottomBarColor: const Color(0xFF8400C0)
+    bottomBarColor: const Color(0xFF8400C0),
+    cardSecondaryBackgroundColor: const Color(0xFFF1F0F0),
+    cardShadowColor: const Color(0x17181818)
   );
 }
 
@@ -42,10 +48,12 @@ class DarkTheme extends ThemeModel {
     primaryColor: const Color(0xFF1E1C28),
     accentColor: Colors.deepPurpleAccent[400]!,
     backgroundColor: const Color(0xFF0C0C0C),
-      primaryTextColor: Colors.white,
-      secondaryTextColor: Colors.white54,
-      cardBackgroundColor: const Color(0xFF000000),
-      bottomBarColor: const Color(0xFF000000)
+    primaryTextColor: Colors.white,
+    secondaryTextColor: Colors.white54,
+    cardBackgroundColor: const Color(0xFF000000),
+    bottomBarColor: const Color(0xFF000000),
+    cardSecondaryBackgroundColor: const Color(0xFF171717),
+    cardShadowColor: const Color(0xBAFAFAF)
   );
 }
 

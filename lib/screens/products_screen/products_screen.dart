@@ -1,3 +1,4 @@
+import 'package:canclini_flutter_app/common_widgets/general/general_common_widgets_barrel.dart';
 import 'package:canclini_flutter_app/providers/theme_provider.dart';
 import 'package:canclini_flutter_app/screens/products_screen/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,10 +29,10 @@ class ProductsScreen extends StatelessWidget {
                 size: 100,
               );
             } else if (snapshot.hasError) {
-              return const ErrorWidget(
+              return const ErrorLoadWidget(
                   messageText: "Ocurrió un error cargando los articulos!");
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const WarningWidget(
+              return const WarningLoadWidget(
                   messageText: "No hay articulos para mostrar!");
             } else {
               return Padding(
@@ -55,64 +56,4 @@ class ProductsScreen extends StatelessWidget {
   }
 }
 
-class ErrorWidget extends StatelessWidget {
-  final String messageText;
 
-  const ErrorWidget({super.key, required this.messageText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          Icons.error_rounded, // Icono de carita triste
-          size: 150.0, // Tamaño del icono
-          color: Colors.white,
-          shadows: [
-            Shadow(color: Colors.black38, blurRadius: 5, offset: Offset(2, 2))
-          ],
-          // Color del icono
-        ),
-        Text(
-          messageText,
-          style: const TextStyle(color: Colors.white, fontSize: 20, shadows: [
-            Shadow(color: Colors.black54, blurRadius: 2, offset: Offset(2, 2))
-          ]),
-          textAlign: TextAlign.center,
-        )
-      ],
-    );
-  }
-}
-
-class WarningWidget extends StatelessWidget {
-  final String messageText;
-
-  const WarningWidget({super.key, required this.messageText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          Icons.production_quantity_limits, // Icono de carita triste
-          size: 150.0, // Tamaño del icono
-          color: Colors.white,
-          shadows: [
-            Shadow(color: Colors.black38, blurRadius: 5, offset: Offset(2, 2))
-          ],
-          // Color del icono
-        ),
-        Text(
-          messageText,
-          style: const TextStyle(color: Colors.white, fontSize: 20, shadows: [
-            Shadow(color: Colors.black54, blurRadius: 2, offset: Offset(2, 2))
-          ]),
-          textAlign: TextAlign.center,
-        )
-      ],
-    );
-  }
-}

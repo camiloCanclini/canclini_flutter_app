@@ -14,7 +14,7 @@ import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 // DEPENDENCIES
 //import 'package:flutter_dotenv/flutter_dotenv.dart';
 // SCREENS
-import 'package:canclini_flutter_app/screens/home_screen.dart';
+import 'package:canclini_flutter_app/screens/home_screen/home_screen.dart';
 import 'package:canclini_flutter_app/screens/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 
