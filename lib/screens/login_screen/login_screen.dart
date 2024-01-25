@@ -1,5 +1,5 @@
-import 'package:canclini_flutter_app/screens/login_screen/widgets/login.dart';
-import 'package:canclini_flutter_app/screens/login_screen/widgets/register.dart';
+import 'package:SuperStore/screens/login_screen/widgets/login.dart';
+import 'package:SuperStore/screens/login_screen/widgets/register.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

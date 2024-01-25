@@ -1,6 +1,6 @@
-import 'package:canclini_flutter_app/screens/home_screen/widgets/categories_list.dart';
-import 'package:canclini_flutter_app/screens/home_screen/widgets/credit_cards_carousel.dart';
-import 'package:canclini_flutter_app/screens/home_screen/widgets/offers_carousel.dart';
+import 'package:SuperStore/screens/home_screen/widgets/categories_list.dart';
+import 'package:SuperStore/screens/home_screen/widgets/credit_cards_carousel.dart';
+import 'package:SuperStore/screens/home_screen/widgets/offers_carousel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

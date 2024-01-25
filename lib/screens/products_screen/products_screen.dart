@@ -1,6 +1,6 @@
-import 'package:canclini_flutter_app/common_widgets/general/general_common_widgets_barrel.dart';
-import 'package:canclini_flutter_app/providers/theme_provider.dart';
-import 'package:canclini_flutter_app/screens/products_screen/widgets/product_widget.dart';
+import 'package:SuperStore/common_widgets/general/general_common_widgets_barrel.dart';
+import 'package:SuperStore/providers/theme_provider.dart';
+import 'package:SuperStore/screens/products_screen/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

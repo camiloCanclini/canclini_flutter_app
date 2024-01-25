@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:canclini_flutter_app/helpers/secure_storage_helper.dart';
+import 'package:SuperStore/helpers/secure_storage_helper.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 

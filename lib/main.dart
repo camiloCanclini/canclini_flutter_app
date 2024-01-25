@@ -2,11 +2,11 @@
 // I M P O R T A C I O N E S
 // PROVIDERS
 // HELPERS
-import 'package:canclini_flutter_app/helpers/secure_storage_helper.dart';
-import 'package:canclini_flutter_app/layouts/main_layout.dart';
-import 'package:canclini_flutter_app/providers/products_provider.dart';
-import 'package:canclini_flutter_app/providers/theme_provider.dart';
-import 'package:canclini_flutter_app/screens/products_screen/products_screen.dart';
+import 'package:SuperStore/helpers/secure_storage_helper.dart';
+import 'package:SuperStore/layouts/main_layout.dart';
+import 'package:SuperStore/providers/products_provider.dart';
+import 'package:SuperStore/providers/theme_provider.dart';
+import 'package:SuperStore/screens/products_screen/products_screen.dart';
 // FLUTTER
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -14,8 +14,8 @@ import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 // DEPENDENCIES
 //import 'package:flutter_dotenv/flutter_dotenv.dart';
 // SCREENS
-import 'package:canclini_flutter_app/screens/home_screen/home_screen.dart';
-import 'package:canclini_flutter_app/screens/login_screen/login_screen.dart';
+import 'package:SuperStore/screens/home_screen/home_screen.dart';
+import 'package:SuperStore/screens/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 
 
@@ -27,7 +27,7 @@ void main() async{
   //await Preferences.initShared();
 
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  await dotenv.load();
 
   // Aquí deberías realizar la lógica de verificación de credenciales
   bool isLoggedIn = await SecureStorage.isTokenValid(); // Esta función debería verificar las credenciales

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:canclini_flutter_app/models/product.dart';
-import 'package:canclini_flutter_app/providers/theme_provider.dart';
+import 'package:SuperStore/models/product.dart';
+import 'package:SuperStore/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_add_to_cart_button/flutter_add_to_cart_button.dart';
 import 'package:provider/provider.dart';

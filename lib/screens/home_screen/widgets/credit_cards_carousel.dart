@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:canclini_flutter_app/common_widgets/general/general_common_widgets_barrel.dart';
+import 'package:SuperStore/common_widgets/general/general_common_widgets_barrel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,18 +15,18 @@ class CreditCardsCarouselWidget extends StatelessWidget {
   CreditCardsCarouselWidget({super.key});
 
   final List<Map<String, dynamic>> creditCardsList = [
-    {'imagePath': 'assets/images/home_screen/credit_cards_carousel/1.png',
+    {'imagePath': 'assets/images/home_screen/credit_cards_carousel/2.png',
       'title': '25% Dto', 'subTitle': 'Tope : \$ 4.000 en la primera compra',
       'description': 'Con Tarjeta de Credito *Comprando cualquier dia y programando entrega/retiro el dia de la promo.'
     },
     {
-      'imagePath': 'assets/images/home_screen/credit_cards_carousel/2.png',
+      'imagePath': 'assets/images/home_screen/credit_cards_carousel/3.png',
       'title': '5% Dto',
       'subTitle': 'Tope : \$ 1.000 por usuario',
       'description': 'Del 01/05/2023 al 31/01/2024. En tu primer pago con Mercado Credito'
     },
     {
-      'imagePath': 'assets/images/home_screen/credit_cards_carousel/3.png',
+      'imagePath': 'assets/images/home_screen/credit_cards_carousel/1.png',
       'title': '15% Dto',
       'subTitle': 'Tope \$ 1.500 por transacción',
       'description': 'Comprando con tarjeta de crédito ONLINE: comprando cualquier día y programando entrega/retiro los días de la promo'

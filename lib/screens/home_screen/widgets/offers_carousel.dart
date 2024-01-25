@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:canclini_flutter_app/common_widgets/general/general_common_widgets_barrel.dart';
+import 'package:SuperStore/common_widgets/general/general_common_widgets_barrel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
